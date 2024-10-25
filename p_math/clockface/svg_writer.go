@@ -11,6 +11,7 @@ func SVGWriter(w io.Writer, time time.Time) {
 	io.WriteString(w, bezel)
 	secondHand(w, time)
 	minuteHand(w, time)
+	hourHand(w, time)
 	io.WriteString(w, svgEnd)
 }
 
@@ -22,6 +23,11 @@ func secondHand(w io.Writer, t time.Time) {
 func minuteHand(w io.Writer, t time.Time) {
 	p := pointToHand(minuteHandPoint(t), minuteHandelLength)
 	makeHand(w, p, "#000")
+}
+
+func hourHand(w io.Writer, t time.Time) {
+	p := pointToHand(hourHandPoint(t), hourHandelLength)
+	makeHand(w, p, "#00f")
 }
 
 func makeHand(w io.Writer, p Point, color string) {
